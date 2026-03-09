@@ -2,77 +2,108 @@
 
 @theme {
     --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-    --color-primary: #f67280;
-    --color-primary-content: #101828;
-    --color-complementary: #355c7d;
-    --background-image-noise: linear-gradient(
-            to bottom,
-            color-mix(in oklab, var(--color-gray-950) 0%, transparent),
-            color-mix(in oklab, var(--color-gray-950) 100%, transparent)
-        ),
-        url('/images/noise.png');
+    --color-primary: #7c9a8e;
+    --color-primary-dark: #5f8072;
+    --color-accent: #d4a89a;
+    --color-accent-light: #e8cfc7;
+    --color-blush: #f2ddd5;
+    --color-sage: #dce5df;
+    --color-sage-light: #eef2ef;
+    --color-lavender: #d5d0e5;
+    --color-lavender-light: #eae7f2;
+    --color-cream: #faf7f4;
+    --color-warm-white: #fdfcfa;
+    --color-text: #2d3748;
+    --color-text-light: #5a6577;
+    --color-text-lighter: #8494a7;
+    --color-border: #e8e4e0;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 @layer base {
+    body {
+        color: var(--color-text);
+        background-color: var(--color-warm-white);
+    }
+
     h1 {
-        @apply text-4xl font-bold tracking-tight sm:text-5xl;
+        @apply text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl;
+        color: var(--color-text);
     }
 
     h2 {
         @apply text-2xl font-bold sm:text-3xl;
+        color: var(--color-text);
+    }
+
+    h3 {
+        @apply text-xl font-semibold;
+        color: var(--color-text);
     }
 
     a:not(.btn) {
-        @apply underline transition hover:opacity-80;
-    }
-
-    pre {
-        @apply p-6 overflow-x-auto rounded-lg;
-    }
-
-    :not(pre) > code {
-        @apply px-1 py-0.5 font-mono rounded bg-gray-900 text-primary;
-        font-size: 0.9em;
+        @apply transition hover:opacity-80;
     }
 }
 
 @layer components {
-    .markdown {
-        > * {
-            @apply my-6;
-        }
-
-        :where(h1, h2) {
-            @apply mt-12 mb-6;
-        }
-
-        > :first-child {
-            @apply mt-0;
-        }
-
-        > :last-child {
-            @apply mb-0;
-        }
-    }
-
     .btn {
-        @apply inline-flex items-center justify-center gap-2 bg-primary text-primary-content cursor-pointer text-center font-semibold no-underline transition-colors;
-        padding: var(--btn-py, 0.875rem) var(--btn-px, 1.25rem);
-        font-size: var(--btn-font-size, 0.875rem);
-        border-radius: var(--btn-border-radius, 0.25rem);
+        @apply inline-flex items-center justify-center gap-2 cursor-pointer text-center font-semibold no-underline transition-all;
+        padding: var(--btn-py, 0.875rem) var(--btn-px, 1.75rem);
+        font-size: var(--btn-font-size, 1rem);
+        border-radius: var(--btn-border-radius, 0.5rem);
+        background-color: var(--color-primary);
+        color: white;
 
         &:hover {
-            @apply bg-primary/85;
-        }
-
-        &:disabled {
-            @apply text-gray-400 bg-gray-700;
+            background-color: var(--color-primary-dark);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(124, 154, 142, 0.3);
         }
     }
 
     .btn-lg {
         --btn-font-size: 1.125rem;
-        --btn-px: 1.5rem;
+        --btn-px: 2rem;
         --btn-py: 1.125rem;
+    }
+
+    .btn-outline {
+        background-color: transparent;
+        color: var(--color-primary);
+        border: 2px solid var(--color-primary);
+
+        &:hover {
+            background-color: var(--color-primary);
+            color: white;
+        }
+    }
+
+    .section {
+        @apply py-16 sm:py-24;
+    }
+
+    .section-alt {
+        background-color: var(--color-cream);
+    }
+
+    .container {
+        @apply w-full max-w-6xl mx-auto px-6 sm:px-8;
+    }
+
+    .card {
+        @apply rounded-xl p-8;
+        background-color: white;
+        border: 1px solid var(--color-border);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+        transition: box-shadow 0.2s ease, transform 0.2s ease;
+
+        &:hover {
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+            transform: translateY(-2px);
+        }
     }
 }
